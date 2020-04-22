@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">E02view</string>
+    <string name="action_signup">회원가입</string>
+    <string name="action_memo">메모장</string>
+    <string name="refresh">새로고침</string>
+    <string name="action_buttons">버튼</string>
+</resources>
