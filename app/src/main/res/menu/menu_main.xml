@@ -14,4 +14,13 @@
         android:id="@+id/action_buttons"
         android:title="@string/action_buttons"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_checkboxes"
+        android:title="@string/action_checkboxes" />
+    <item
+        android:id="@+id/action_spinners"
+        android:title="@string/action_spinners" />
+    <item
+        android:id="@+id/action_alerts"
+        android:title="@string/action_alerts" />
 </menu>
