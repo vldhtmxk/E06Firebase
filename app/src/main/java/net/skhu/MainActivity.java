@@ -19,7 +19,15 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void btnRecyCleView1_clicked(View view) {
-        Intent intent = new Intent(this, ListViewActivity.class);
+        Intent intent = new Intent(this, RecyclerView1Activity.class);
+        startActivity(intent);
+    }
+    public void btnRecyCleView2_clicked(View view) {
+        Intent intent = new Intent(this, RecyclerView2Activity.class);
+        startActivity(intent);
+    }
+    public void btnRecyCleView3_clicked(View view) {
+        Intent intent = new Intent(this, RecyclerView3Activity.class);
         startActivity(intent);
     }
 }
