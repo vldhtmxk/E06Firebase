@@ -1,17 +1,20 @@
 package net.skhu;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class Exam3Adapter extends RecyclerView.Adapter<Exam3Adapter.ViewHolder>
-        implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+import java.util.ArrayList;
 
-    Class ViewHolder extends RecyclerView.ViewHolder {
+public class Exam3Adapter extends RecyclerView.Adapter<Exam3Adapter.ViewHolder> {
+
+    public Class ViewHolder extends RecyclerView.ViewHolder
+             implements View.OnClickListener{
         TextView textView;
 
         public ViewHolder(View view) {
@@ -23,20 +26,39 @@ public class Exam3Adapter extends RecyclerView.Adapter<Exam3Adapter.ViewHolder>
             Memo memo = arrayList.get(getAdapterPosition());
             textView.setText(memo.getTitle());
         }
+        @Override
+        public void onClick(View view) {
+            int index = super.getAdapterPosition();
+            RecyclerView3Activity activity = (RecyclerView3Activity) textView1.getContext();
+            activity.memoIndex = index;
+            Memo memo = arrayList.get(index);
+            Intent intent = new Intent(activity, MemoActivity.class);
+            intent.putExtra("MEMO",memo);
+        }
     }
 
-    @Override
-    public Exam3Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    LayoutInflater layoutInflater;
+    ArrayList<Memo> arrayList;
+    int checkedCount =0;
+
+    public Exam3Adapter(Context context, ArrayList<Memo> arrayList) {
+        this.layoutInflater = LayoutInflater.from(context);
+        this.arrayList = arrayList;
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull Exam3Adapter.ViewHolder holder, int position) {
 
-    }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return arrayList.size();
+    }
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View view = layoutInflater.inflate(R.layout.activity_memo, viewGroup, false);
+        return new ViewHolder(view);
+    }
+    @Override
+    public void onBindViewHolder(final ViewHolder viewHolder, final  int index) {
+        viewHolder.setData();
     }
 }

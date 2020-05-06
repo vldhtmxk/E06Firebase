@@ -8,10 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.Date;
-
-import static net.skhu.SignUpActivity.isEmptyOrWhiteSpace;
-
 public class MemoActivity extends AppCompatActivity {
 
     @Override
@@ -20,11 +16,9 @@ public class MemoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_memo);
 
         final EditText editText_title = (EditText) findViewById(R.id.editText_title);
-        final EditText editText_content =(EditText) findViewById(R.id.editText_content);
         Memo memo = (Memo) getIntent().getSerializableExtra("MEMO");
         if(memo != null)
             editText_title.setText(memo.getTitle());
-            editText_content.setText(memo.getBody());
 
         Button button = (Button)findViewById(R.id.btnSave);
         View.OnClickListener listener = new View.OnClickListener() {
@@ -35,12 +29,7 @@ public class MemoActivity extends AppCompatActivity {
                 if(isEmptyOrWhiteSpace(title)){
                     editText_title.setError("제목을 입력하세요");
                 }
-                EditText editText_content= (EditText)findViewById(R.id.editText_content);
-                String body = editText_content.getText().toString();
-                if(isEmptyOrWhiteSpace(body)){
-                    editText_title.setError("내용을 입력하세요");
-                }
-                Memo memo = new Memo(title, body,new Date());
+                Memo memo = new Memo(title);
                 Intent intent = new Intent();
                 intent.putExtra("MEMO",memo);
                 setResult(RESULT_OK, intent);
