@@ -13,7 +13,7 @@ public class Memo implements Serializable {
         return title;
     }
     public void setTitle(String title){
-        this.title =title;
+        this.title = title;
     }
 
 }

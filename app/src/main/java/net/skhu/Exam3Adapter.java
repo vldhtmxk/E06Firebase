@@ -18,8 +18,7 @@ public class Exam3Adapter extends RecyclerView.Adapter<Exam3Adapter.ViewHolder> 
 
         public ViewHolder(View view) {
             super(view);
-            textView = textView.findViewById(R.id.textView1);
-            view.setOnClickListener(this);
+            textView = view.findViewById(R.id.textView1);
 
         }
         public void setData() {
