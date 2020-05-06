@@ -16,13 +16,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
     public class Exam3Activity extends AppCompatActivity {
-        public static final int REQUEST_CREATE = 0;
-        public static final int REQUEST_EDIT = 1;
 
         int memoIndex;
         Exam3Adapter exam3Adapter;
@@ -31,7 +27,7 @@ import java.util.ArrayList;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_recycler_view3);
+            setContentView(R.layout.activity_exam3);
 
             arrayList = new ArrayList<Memo>();
             arrayList.add(new Memo("one"));
@@ -43,18 +39,6 @@ import java.util.ArrayList;
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setAdapter(exam3Adapter);
-
-            Button b = (Button) findViewById(R.id.btnAdd);
-            b.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View argO) {
-                    EditText e = (EditText) findViewById(R.id.editText5);
-                    String s = e.getText().toString();
-                    e.setText("");
-                    arrayList.add(new Memo(s));
-                    exam3Adapter.notifyDataSetChanged();
-                }
-            });
         }
 
         @Override
@@ -67,7 +51,7 @@ import java.util.ArrayList;
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == R.id.action_add) {
-                Intent intent = new Intent(this, MemoActivity.class);
+                Intent intent = new Intent(this, Exam3EditActivity.class);
                 startActivity(intent);
                 return true;
             }
@@ -80,10 +64,7 @@ import java.util.ArrayList;
             if (resultCode == RESULT_OK) {
                 Bundle bundle = data.getExtras();
                 Memo memo = (Memo) bundle.getSerializable("MEMO");
-                if (requestcode == REQUEST_CREATE)
-                    arrayList.add(memo);
-                else if (requestcode == REQUEST_EDIT)
-                    arrayList.set(memoIndex, memo);
+                arrayList.add(memo);
                 exam3Adapter.notifyDataSetChanged();
             }
         }

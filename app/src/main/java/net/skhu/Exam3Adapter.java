@@ -19,6 +19,7 @@ public class Exam3Adapter extends RecyclerView.Adapter<Exam3Adapter.ViewHolder> 
         public ViewHolder(View view) {
             super(view);
             textView = textView.findViewById(R.id.textView1);
+            view.setOnClickListener(this);
 
         }
         public void setData() {
@@ -31,8 +32,9 @@ public class Exam3Adapter extends RecyclerView.Adapter<Exam3Adapter.ViewHolder> 
             Exam3Activity activity = (Exam3Activity) textView.getContext();
             activity.memoIndex = index;
             Memo memo = arrayList.get(index);
-            Intent intent = new Intent(activity, MemoActivity.class);
+            Intent intent = new Intent(activity, Exam3EditActivity.class);
             intent.putExtra("MEMO",memo);
+            activity.startActivity(intent);
         }
     }
 
@@ -51,7 +53,7 @@ public class Exam3Adapter extends RecyclerView.Adapter<Exam3Adapter.ViewHolder> 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = layoutInflater.inflate(R.layout.activity_memo, viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.activity_exam3_edit, viewGroup, false);
         return new ViewHolder(view);
     }
     @Override
