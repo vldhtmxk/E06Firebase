@@ -8,64 +8,61 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
-import android.database.DefaultDatabaseErrorHandler;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ListIterator;
 
-public class RecyclerView2Activity extends AppCompatActivity {
-
-    RecyclerView2Adapter recyclerView2Adapter;
+public class RecyclerView3Activity extends AppCompatActivity {
+    RecyclerView2Adapter recyclerView3Adapter;
     ArrayList<Memo> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_view2);
+        setContentView(R.layout.activity_recycler_view3);
 
         arrayList = new ArrayList<Memo>();
-        arrayList.add(new Memo("어후 시험","",new Date()));
 
-        recyclerView2Adapter = new RecyclerView2Adapter(this,arrayList);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
+        recyclerView3Adapter = new RecyclerView2Adapter(this, arrayList);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        recyclerView.setLayoutManager((new LinearLayoutManager(this)));
-        recyclerView.setAdapter(recyclerView2Adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(recyclerView3Adapter);
 
-        Button b = (Button) findViewById(R.id.btnAdd);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText e = (EditText)findViewById(R.id.editText2);
-                String s = e.getText().toString();
-                arrayList.add(new Memo(s,"",new Date()));
-                recyclerView2Adapter.notifyDataSetChanged();
-            }
-        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_recycler_view2, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         MenuItem menuItem = menu.findItem(R.id.action_remove);
-        menuItem.setVisible(recyclerView2Adapter.checkedCount>0);
-        return  true;
+        menuItem.setVisible(recyclerView3Adapter.checkedCount > 0) ;
+        return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id==R.id.action_remove){
+        if(id == R.id.action_add) {
+            Intent intent = new Intent(this, MemoActivity.class);
+            startActivityForResult(intent,0);
+        }else if(id == R.id.action_remove) {
             deleteItems();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode == RESULT_OK) {
+            Bundle bundle=data.getExtras();
+            Memo memo = (Memo)bundle.getSerializable("MEMO");
+            recyclerView3Adapter.notifyDataSetChanged();
+
+        }
     }
     private void deleteItems() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -78,7 +75,7 @@ public class RecyclerView2Activity extends AppCompatActivity {
                 while(iterator.hasNext())
                     if(iterator.next().isChecked())
                         iterator.remove();
-                recyclerView2Adapter.notifyDataSetChanged();
+                recyclerView3Adapter.notifyDataSetChanged();
             }
         });
         builder.setNeutralButton(R.string.no,null);

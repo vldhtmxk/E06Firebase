@@ -40,5 +40,10 @@ public class MemoActivity extends AppCompatActivity {
                 finish();
             }
         };
+        button.setOnClickListener(listener);
+    }
+    static boolean isEmptyOrWhiteSpace(String s) {
+        if(s==null) return true;
+        return s.toString().trim().length()==0;
     }
 }
