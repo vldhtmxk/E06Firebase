@@ -28,4 +28,6 @@
     <string name="no">아니오</string>
     <string name="input_title">제목을 입력하세요.</string>
     <string name="action_add">생성</string>
+    <string name="action_recycerView3">RecyclerView3</string>
+    <string name="action_exam3">Exam3</string>
 </resources>

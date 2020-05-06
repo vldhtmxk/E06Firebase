@@ -2,6 +2,7 @@ package net.skhu;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +41,13 @@ public class RecyclerView2Adapter extends RecyclerView.Adapter<RecyclerView2Adap
         }
         @Override
         public void onClick(View view) {
-            Memo memo = arrayList.get(super.getAdapterPosition());
-            String s = String.format("index : %d, title: %s",super.getAdapterPosition(),memo.getTitle());
-            Toast.makeText(view.getContext(),s,Toast.LENGTH_SHORT).show();
+            int index = super.getAdapterPosition();
+            RecyclerView3Activity activity = (RecyclerView3Activity) textView1.getContext();
+            activity.memoIndex = index;
+            Memo memo = arrayList.get(index);
+            Intent intent = new Intent(activity,MemoActivity.class);
+            intent.putExtra("MEMO",memo);
+            activity.startActivityForResult(intent,RecyclerView3Activity.REQUEST_EDIT);
         }
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
