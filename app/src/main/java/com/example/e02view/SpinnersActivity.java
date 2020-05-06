@@ -29,7 +29,7 @@ public class SpinnersActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int index = spinner.getSelectedItemPosition();
                 String text = spinner.getSelectedItem().toString();
-                String s = String.format("주소:%s(%d)", text, index);
+                String s = String.format("주소!:%s(%d)", text, index);
                 Toast.makeText(SpinnersActivity.this,s,Toast.LENGTH_SHORT).show();
             }
 
