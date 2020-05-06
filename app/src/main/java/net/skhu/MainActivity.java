@@ -23,30 +23,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_signUp) {
-            Intent intent=new Intent(this, SignUpActivity.class);
-            startActivity(intent);
-        }
-        if(id == R.id.action_checkBox) {
-            Intent intent =new Intent(this, CheckboxesActivity.class);
-            startActivity(intent);
-        }
-        if(id == R.id.action_listView) {
-            Intent intent = new Intent(this, TestActivity.class);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
-    public void btnRecyclerView1_clicked(View view) {
-        Intent intent = new Intent(this, TestActivity.class);
-        startActivity(intent);
-    }
-    public  void  btnRecyclerView2_clicked(View view) {
-        Intent intent = new Intent(this, RecyclerView2Activity.class);
-        startActivity(intent);
-    }
-    public  void  btnRecyclerView3_clicked(View view) {
-        Intent intent = new Intent(this, RecyclerView3Activity.class);
+
+    public  void  btnExam3Edit_clicked(View view) {
+        Intent intent = new Intent(this, Exam3EditActivity.class);
         startActivity(intent);
     }
 }

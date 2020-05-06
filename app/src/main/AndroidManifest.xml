@@ -11,16 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Exam3EditActivity"></activity>
         <activity android:name=".Exam3Activity" />
-        <activity android:name=".RecyclerView3Activity" />
         <activity android:name=".MemoActivity" />
-        <activity android:name=".RecyclerView2Activity" />
-        <activity android:name=".TestActivity" />
-        <activity
-            android:name=".CheckboxesActivity"
-            android:label="@string/action_checkBox" />
-        <activity
-            android:name=".SignUpActivity"
-            android:label="@string/action_signUp" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

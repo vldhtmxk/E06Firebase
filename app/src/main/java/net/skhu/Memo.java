@@ -6,7 +6,7 @@ import java.util.Date;
 public class Memo implements Serializable {
     String title;
 
-    public Memo(String title,String body, Date date) {
+    public Memo(String title) {
         this.title = title;
     }
     public String getTitle() {
